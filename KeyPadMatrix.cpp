@@ -37,14 +37,14 @@ void KeyPadMatrix::scanKeyPad(void) {
 
 	// Mask out read row
 	keyByte &= ~(1 << scanCount);
-	// Calculate the key code
 
+	// Calculate the key code
 	uint8_t keycode = (keyByte * (1 << (scanCount))) + scanCount;
 
 	if (keyByte > 0 && scanCount == 4) {
 		keyCodeLast = keycode;
-	} else if (keyByte > 0 && keyCodeTmp == 0) {
-		keyCodeTmp = keycode;
+	} else if (keyByte > 0 && this->keyCodeSaved == 0) {
+		this->keyCodeSaved = keycode;
 	}
 
 	scanCount ++;
@@ -52,9 +52,9 @@ void KeyPadMatrix::scanKeyPad(void) {
 	if (scanCount > 4) {
 		scanCount = 0;
 
-		if (keyCodeTmp || keyCodeLast) {
-			this->keyCode = keyCodeLast ? keyCodeLast : keyCodeTmp;
-			keyCodeTmp = 0;
+		if (this->keyCodeSaved || keyCodeLast) {
+			this->keyCode = keyCodeLast ? keyCodeLast : this->keyCodeSaved;
+			this->keyCodeSaved = 0;
 			keyCodeLast = 0;
 		} else {
 			this->keyCode = 0;

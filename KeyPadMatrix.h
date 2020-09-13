@@ -31,7 +31,7 @@ class KeyPadMatrix {
 
 		uint8_t keyCode = 0;
 		uint8_t keyCodeOld = 255;
-		uint8_t keyCodeTmp = 0;
+		uint8_t keyCodeSaved = 0;
 
 		uint8_t keyCodeChanged = 0;
 		uint8_t mode = 0;
