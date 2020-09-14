@@ -26,7 +26,7 @@ class KeyPadMatrix {
 
 	private:
 		uint8 pinMap[4];
-		uint8_t scanCount = 0;		// counter for current scan row
+		uint8_t scanRow = 0;		// counter for current scan row
 
 
 		uint8_t keyCode = 0;

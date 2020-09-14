@@ -22,7 +22,7 @@ void KeyPadMatrix::scanKeyPad(void) {
 
 	// Configure scan row pins
 	for (uint8_t i = 0; i < 4; i++) {
-		if (i != scanCount || scanCount == 4) {
+		if (i != scanRow || scanRow == 4) {
 			// Set row as input
 			pinMode(pinMap[i], INPUT_PULLUP);
 		} else {
@@ -36,21 +36,21 @@ void KeyPadMatrix::scanKeyPad(void) {
 	uint8_t keyByte = !digitalRead(pinMap[0]) << 0 | !digitalRead(pinMap[1]) << 1 | !digitalRead(pinMap[2]) << 2 | !digitalRead(pinMap[3]) << 3;
 
 	// Mask out read row
-	keyByte &= ~(1 << scanCount);
+	keyByte &= ~(1 << scanRow);
 
 	// Calculate the key code
-	uint8_t keycode = (keyByte * (1 << (scanCount))) + scanCount;
+	uint8_t keycode = (keyByte * (1 << (scanRow))) + scanRow;
 
-	if (keyByte > 0 && scanCount == 4) {
+	if (keyByte > 0 && scanRow == 4) {
 		keyCodeLast = keycode;
 	} else if (keyByte > 0 && this->keyCodeSaved == 0) {
 		this->keyCodeSaved = keycode;
 	}
 
-	scanCount ++;
+	scanRow ++;
 
-	if (scanCount > 4) {
-		scanCount = 0;
+	if (scanRow > 4) {
+		scanRow = 0;
 
 		if (this->keyCodeSaved || keyCodeLast) {
 			this->keyCode = keyCodeLast ? keyCodeLast : this->keyCodeSaved;
