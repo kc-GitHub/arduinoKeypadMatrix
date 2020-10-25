@@ -3,18 +3,18 @@
  */
 
 // include this library's description file
-#include "KeyPadMatrix.h"
+#include "KeypadMatrix.h"
 
 /***********************************************************************************************************************
  */
-KeyPadMatrix::KeyPadMatrix(uint8 row0, uint8 row1, uint8 row2, uint8 row3) {
+KeypadMatrix::KeypadMatrix(uint8 row0, uint8 row1, uint8 row2, uint8 row3) {
     pinMap[0] = row0;
     pinMap[1] = row1;
     pinMap[2] = row2;
     pinMap[3] = row3;
 }
 
-KeyPadMatrix::KeyPadMatrix(uint8 row0, uint8 row1, uint8 row2) {
+KeypadMatrix::KeypadMatrix(uint8 row0, uint8 row1, uint8 row2) {
     pinMap[0] = row0;
     pinMap[1] = row1;
     pinMap[2] = row2;
@@ -24,7 +24,7 @@ KeyPadMatrix::KeyPadMatrix(uint8 row0, uint8 row1, uint8 row2) {
 /***********************************************************************************************************************
  */
 
-void KeyPadMatrix::scan(void) {
+void KeypadMatrix::scan(void) {
     uint8_t keyCodeLast = 0;
 
     // Configure scan row pins
@@ -89,19 +89,19 @@ void KeyPadMatrix::scan(void) {
     }
 }
 
-void KeyPadMatrix::setLongKeyPressTimeout(uint16_t timeoutMs) {
+void KeypadMatrix::setLongKeyPressTimeout(uint16_t timeoutMs) {
     longTimeout = timeoutMs;
 }
 
-uint8 KeyPadMatrix::hasEvent (void) {
+uint8 KeypadMatrix::hasEvent (void) {
     return keyHasEvent;
 }
 
-uint8 KeyPadMatrix::getAction (void) {
+uint8 KeypadMatrix::getAction (void) {
     return action;
 }
 
-uint8 KeyPadMatrix::getKeycode() {
+uint8 KeypadMatrix::getKeycode() {
     uint8 keycode = (action == keyAction::released) ? keyCodeReleased : keyCode;
     keyHasEvent = 0;
     return keycode;

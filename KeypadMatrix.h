@@ -1,20 +1,13 @@
-/**
- **********************************************************************************************************************
- * @file  KeyPadMatrix.h
- * @brief ...
- ***********************************************************************************************************************
- */
-
 #ifndef KEY_PAD_MATRIX_H
 #define KEY_PAD_MATRIX_H
 
 #include <Arduino.h>
 
-class KeyPadMatrix {
+class KeypadMatrix {
     public:
         /* Constructor */
-        KeyPadMatrix(uint8 row0, uint8 row1, uint8 row2, uint8 row3);
-        KeyPadMatrix(uint8 row0, uint8 row1, uint8 row2);
+        KeypadMatrix(uint8 row0, uint8 row1, uint8 row2, uint8 row3);
+        KeypadMatrix(uint8 row0, uint8 row1, uint8 row2);
 
         void scan();
         void setLongKeyPressTimeout(uint16_t timeoutMs);
