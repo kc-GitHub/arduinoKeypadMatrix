@@ -17,17 +17,17 @@ class KeyPadMatrix {
         KeyPadMatrix(uint8 row0, uint8 row1, uint8 row2);
 
         void scan();
-        void setKeypressLongTimeout(uint16_t ms);
+        void setLongKeyPressTimeout(uint16_t timeoutMs);
 
         uint8 hasEvent(void);
         uint8 getKeycode(void);
-        uint8 getMode(void);
+        uint8 getAction(void);
 
-        enum keyMode {
-            keyModeNone = 0,
-            keyModePressed,
-            keyModePressedLong,
-            keyModeReleased
+        enum keyAction {
+            none = 0,
+            pressed,
+            pressedLong,
+            released
         };
 
     private:
@@ -41,11 +41,11 @@ class KeyPadMatrix {
         uint8_t keyCodeOld = 0;
         uint8_t keyCodeSaved = 0;
 
-        uint32_t keyCodeLastMillis = 0;
+        uint32_t keyCodeMillis = 0;
         uint8_t keyHasEvent = 0;
-        keyMode mode = keyModeNone;
+        keyAction action = keyAction::none;
         uint8_t keyCode2 = 0;
-        uint16_t keyPressLongTimeout = 1000;
+        uint16_t longTimeout = 1000;
     };
 
 #endif

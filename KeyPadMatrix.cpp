@@ -69,40 +69,40 @@ void KeyPadMatrix::scan(void) {
 
         if (keyCodeOld != keyCode && keyHasEvent == 0) {
             if (keyCodeOld == 0 && keyCode > 0) {
-                mode = keyModePressed;
+                action = keyAction::pressed;
             } else if (keyCode == 0 && keyCodeOld > 0) {
-                mode = keyModeReleased;
+                action = keyAction::released;
             } else {
-                mode = keyModeNone;
+                action = keyAction::none;
             }
 
-            if (mode > 0) {
-                keyCodeReleased = (mode == keyModeReleased) ? keyCodeOld : 0;
+            if (action > 0) {
+                keyCodeReleased = (action == keyAction::released) ? keyCodeOld : 0;
                 keyHasEvent = 1;
                 keyCodeOld = keyCode;
-                keyCodeLastMillis = millis();
+                keyCodeMillis = millis();
             }
-        } else if (keyCode != 0 && keyCodeOld == keyCode && keyHasEvent == 0 && mode != keyModePressedLong && (millis() - keyCodeLastMillis) > keyPressLongTimeout) {
-            mode = keyModePressedLong;
+        } else if (keyCode != 0 && keyCodeOld == keyCode && keyHasEvent == 0 && action != keyAction::pressedLong && (millis() - keyCodeMillis) > longTimeout) {
+            action = keyAction::pressedLong;
             keyHasEvent = 1;
         }
     }
 }
 
-void KeyPadMatrix::setKeypressLongTimeout(uint16_t ms) {
-    keyPressLongTimeout = ms;
+void KeyPadMatrix::setLongKeyPressTimeout(uint16_t timeoutMs) {
+    longTimeout = timeoutMs;
 }
 
 uint8 KeyPadMatrix::hasEvent (void) {
     return keyHasEvent;
 }
 
-uint8 KeyPadMatrix::getMode (void) {
-    return mode;
+uint8 KeyPadMatrix::getAction (void) {
+    return action;
 }
 
 uint8 KeyPadMatrix::getKeycode() {
-    uint8 keycode = (mode == keyModeReleased) ? keyCodeReleased : keyCode;
+    uint8 keycode = (action == keyAction::released) ? keyCodeReleased : keyCode;
     keyHasEvent = 0;
     return keycode;
 }
