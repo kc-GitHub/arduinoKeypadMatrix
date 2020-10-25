@@ -1,5 +1,5 @@
-#ifndef KEY_PAD_MATRIX_H
-#define KEY_PAD_MATRIX_H
+#ifndef KEYPAD_MATRIX_H
+#define KEYPAD_MATRIX_H
 
 #include <Arduino.h>
 
