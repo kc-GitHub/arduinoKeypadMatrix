@@ -15,7 +15,7 @@ With this library you can add a special keypad matrix with up to 9 or 16 keys, w
 
 *Schematic for 4 x 4 Matrix*
 
-<img src="./extras/Schematic_keypad_4x4.png" alt="Keypad 4x4 schematic" style="border: 1px solid #888;" />
+![Keypad 4x4 schematic](./extras/Schematic_keypad_4x4.png)
 
 * D1 - D4 are simple diods like 1N4148
 
