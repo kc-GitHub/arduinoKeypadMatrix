@@ -5,14 +5,10 @@
  ***********************************************************************************************************************
  */
 
-#ifndef KEY_PAD_MATRIX_K
-#define KEY_PAD_MATRIX_K
+#ifndef KEY_PAD_MATRIX_H
+#define KEY_PAD_MATRIX_H
 
 #include <Arduino.h>
-
-#define KEYPADMATRIX_MODE_NONE        0
-#define KEYPADMATRIX_MODE_PRESSED     1
-#define KEYPADMATRIX_MODE_RELEASED    2
 
 class KeyPadMatrix {
     public:
@@ -21,9 +17,18 @@ class KeyPadMatrix {
         KeyPadMatrix(uint8 row0, uint8 row1, uint8 row2);
 
         void scan();
-        uint8 keyCodeHasChanged(void);
+        void setKeypressLongTimeout(uint16_t ms);
+
+        uint8 hasEvent(void);
         uint8 getKeycode(void);
         uint8 getMode(void);
+
+        enum keyMode {
+            keyModeNone = 0,
+            keyModePressed,
+            keyModePressedLong,
+            keyModeReleased
+        };
 
     private:
         uint8_t rowCountMax = 4;
@@ -32,12 +37,15 @@ class KeyPadMatrix {
         uint8_t setupDone = 0;
 
         uint8_t keyCode = 0;
-        uint8_t keyCodeOld = 255;
+        uint8_t keyCodeReleased = 0;
+        uint8_t keyCodeOld = 0;
         uint8_t keyCodeSaved = 0;
 
-        uint8_t keyCodeChanged = 0;
-        uint8_t mode = 0;
+        uint32_t keyCodeLastMillis = 0;
+        uint8_t keyHasEvent = 0;
+        keyMode mode = keyModeNone;
         uint8_t keyCode2 = 0;
+        uint16_t keyPressLongTimeout = 1000;
     };
 
 #endif
