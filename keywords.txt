@@ -1,0 +1,18 @@
+#######################################
+# Syntax Coloring Map For KeypadMatrix
+#######################################
+
+#######################################
+# Library (KEYWORD3)
+#######################################
+
+KeypadMatrix            KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+setLongKeyPressTimeout	KEYWORD2
+scan                    KEYWORD2
+hasEvent                KEYWORD2
+getAction               KEYWORD2
+getKeycode              KEYWORD2
