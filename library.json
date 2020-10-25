@@ -1,12 +1,13 @@
 {
-  "name": "KeypadMatrix",
-  "keywords": "KeypadMatrix",
-  "description": "Reads key pad matrix with only 3 (3x3) or 4 (4x4) pins",
-  "repository":
-  {
-    "type": "git",
-    "url": "git@github.com:kc-GitHub/arduinoKeypadMatrix.git"
-  },
-  "frameworks": "arduino",
-  "version": "1.0"
+    "name": "KeypadMatrix",
+    "keywords": "Keyboard Keypad Matrix",
+    "description": "Reads key pad matrix with only 3 (3x3) or 4 (4x4) pins",
+    "homepage": "https://github.com/kc-GitHub/arduinoKeypadMatrix",
+    "repository": {
+      "type": "git",
+      "url": "git@github.com:kc-GitHub/arduinoKeypadMatrix.git"
+    },
+    "frameworks": "arduino",
+    "version": "1.0"
+    "platforms": "*"
 }
