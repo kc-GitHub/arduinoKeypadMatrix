@@ -76,7 +76,7 @@ void KeypadMatrix::scan(void) {
                 action = keyAction::none;
             }
 
-            if (action > 0) {
+            if (action > keyAction::none) {
                 keyCodeReleased = (action == keyAction::released) ? keyCodeOld : 0;
                 keyHasEvent = 1;
                 keyCodeOld = keyCode;
@@ -97,7 +97,7 @@ uint8 KeypadMatrix::hasEvent (void) {
     return keyHasEvent;
 }
 
-uint8 KeypadMatrix::getAction (void) {
+KeypadMatrix::keyAction KeypadMatrix::getAction (void) {
     return action;
 }
 

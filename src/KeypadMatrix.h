@@ -5,6 +5,13 @@
 
 class KeypadMatrix {
     public:
+        enum keyAction {
+            none = 0,
+            pressed,
+            pressedLong,
+            released
+        };
+
         /* Constructor */
         KeypadMatrix(uint8 row0, uint8 row1, uint8 row2, uint8 row3);
         KeypadMatrix(uint8 row0, uint8 row1, uint8 row2);
@@ -12,16 +19,9 @@ class KeypadMatrix {
         void scan();
         void setLongKeyPressTimeout(uint16_t timeoutMs);
 
-        uint8 hasEvent(void);
-        uint8 getKeycode(void);
-        uint8 getAction(void);
-
-        enum keyAction {
-            none = 0,
-            pressed,
-            pressedLong,
-            released
-        };
+        uint8_t hasEvent(void);
+        uint8_t getKeycode(void);
+        KeypadMatrix::keyAction getAction(void);
 
     private:
         uint8_t rowCountMax = 4;
